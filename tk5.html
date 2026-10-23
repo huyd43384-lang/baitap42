@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion đơn giản</title>
+
+    <style>
+        .accordion {
+            width: 400px;
+            margin: 50px auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .accordion-title {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        .accordion-title:hover {
+            background-color: #2980b9;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #f1f1f1;
+        }
+
+        .accordion-content p {
+            padding: 15px;
+            margin: 0;
+        }
+
+        .accordion-content.active {
+            max-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="accordion">
+        <button class="accordion-title">
+            Bấm vào đây để xem nội dung
+        </button>
+
+        <div class="accordion-content">
+            <p>
+                Đây là nội dung của Accordion.
+                Bạn có thể ẩn hoặc hiện nội dung
+                bằng cách nhấn vào tiêu đề.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const title = document.querySelector(".accordion-title");
+        const content = document.querySelector(".accordion-content");
+
+        title.addEventListener("click", function () {
+            content.classList.toggle("active");
+        });
+    </script>
+
+</body>
+</html>

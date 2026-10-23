@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K4 - Phân Trang Danh Sách</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #ddd;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1769aa;
+        }
+
+        #list {
+            padding: 0;
+            list-style: none;
+        }
+
+        #list li {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #list li:nth-child(odd) {
+            background: #f4f7fb;
+        }
+
+        #pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        #pagination button {
+            padding: 9px 14px;
+            border: 1px solid #1769aa;
+            background: white;
+            color: #1769aa;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #pagination button.active {
+            background: #1769aa;
+            color: white;
+        }
+
+        #pagination button:hover {
+            background: #d8eaff;
+        }
+
+        #pagination button.active:hover {
+            background: #1769aa;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>K4 - Phân Trang Danh Sách</h2>
+
+        <p id="info"></p>
+
+        <ul id="list"></ul>
+
+        <div id="pagination"></div>
+
+        <a class="back" href="42.html">Quay về trang chủ</a>
+    </div>
+
+    <script>
+        // Tạo danh sách 50 mục
+        const items = [];
+
+        for (let i = 1; i <= 50; i++) {
+            items.push("Mục số " + i);
+        }
+
+        const itemsPerPage = 10;
+        let currentPage = 1;
+
+        // Hiển thị danh sách theo trang
+        function displayItems(page) {
+            const list = document.getElementById("list");
+            const info = document.getElementById("info");
+
+            list.innerHTML = "";
+
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = items.slice(start, end);
+
+            pageItems.forEach(function(item) {
+                const li = document.createElement("li");
+                li.textContent = item;
+                list.appendChild(li);
+            });
+
+            info.textContent =
+                "Trang " + page + " - Hiển thị mục " +
+                (start + 1) + " đến " + Math.min(end, items.length) +
+                " / " + items.length + " mục";
+
+            currentPage = page;
+            displayPagination();
+        }
+
+        // Tạo các nút phân trang
+        function displayPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(items.length / itemsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+
+                button.textContent = i;
+
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+
+                button.addEventListener("click", function() {
+                    displayItems(i);
+                });
+
+                pagination.appendChild(button);
+            }
+        }
+
+        // Hiển thị trang đầu tiên
+        displayItems(1);
+    </script>
+
+</body>
+</html>

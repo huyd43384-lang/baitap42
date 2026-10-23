@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK8 - Chuyển Hex sang RGB</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 60px;
+            background-color: #f4f7fb;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #ccc;
+        }
+
+        input {
+            padding: 10px;
+            width: 180px;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 18px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #colorBox {
+            width: 120px;
+            height: 80px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>TK8 - Hex sang RGB</h2>
+
+        <label for="hexInput">Nhập mã màu Hex:</label>
+        <br>
+        <input type="text" id="hexInput" value="#FF0000"
+               placeholder="#FF0000">
+
+        <br>
+        <button onclick="convertHexToRGB()">Chuyển đổi</button>
+
+        <p id="result">rgb(255, 0, 0)</p>
+
+        <div id="colorBox"></div>
+
+        <a href="42.html">Quay về trang chủ</a>
+    </div>
+
+    <script>
+        function convertHexToRGB() {
+            let hex = document.getElementById("hexInput").value.trim();
+
+            // Xóa dấu # nếu có
+            if (hex.startsWith("#")) {
+                hex = hex.slice(1);
+            }
+
+            // Kiểm tra mã màu Hex gồm 6 ký tự hợp lệ
+            if (!/^[0-9A-Fa-f]{6}$/.test(hex)) {
+                document.getElementById("result").textContent =
+                    "Mã màu Hex không hợp lệ!";
+                document.getElementById("colorBox").style.backgroundColor =
+                    "transparent";
+                return;
+            }
+
+            // Chuyển Hex sang RGB
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+
+            const rgb = `rgb(${r}, ${g}, ${b})`;
+
+            // Hiển thị kết quả
+            document.getElementById("result").textContent = rgb;
+            document.getElementById("colorBox").style.backgroundColor = rgb;
+        }
+
+        // Chuyển đổi khi mở trang
+        convertHexToRGB();
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK7 - Tạo chuỗi ngẫu nhiên</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 80px;
+            background-color: #f4f7fb;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #ccc;
+        }
+
+        #result {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1769aa;
+            margin: 20px;
+            letter-spacing: 3px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #1769aa;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0d4f85;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>TK7 - Tạo chuỗi ngẫu nhiên</h2>
+
+        <p>Mật khẩu ngẫu nhiên dài 8 ký tự:</p>
+
+        <div id="result">????????</div>
+
+        <button onclick="generatePassword()">
+            Tạo mật khẩu
+        </button>
+
+        <br>
+        <a href="42.html">Quay về trang chủ</a>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+            let password = "";
+
+            for (let i = 0; i < 8; i++) {
+                const randomIndex = Math.floor(
+                    Math.random() * characters.length
+                );
+
+                password += characters[randomIndex];
+            }
+
+            document.getElementById("result").textContent = password;
+        }
+
+        // Tạo mật khẩu ngay khi mở trang
+        generatePassword();
+    </script>
+
+</body>
+</html>
